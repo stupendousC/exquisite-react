@@ -14,6 +14,7 @@ class Game extends Component {
       wholePoem: [],
       currPlayer: 1,
       totalPlayerCount: 3,
+      gameOver: false,
     }
   }
 
@@ -25,13 +26,19 @@ class Game extends Component {
       this.setState({ currPlayer: this.state.currPlayer + 1 });
     }
   }
-  
+
   submitLine = (line) => {
-    // console.log('Game received', line);
-    this.setState({ prevLine: line });
+    let currWholePoem = [...this.state.wholePoem];
+    currWholePoem.push(line);
+    this.setState({ prevLine: line, wholePoem: currWholePoem });
     this.rotatePlayer();
+
+    console.log(this.state.wholePoem);
   }
 
+  gameOver = () => {
+    this.setState({ gameOver: true });
+  }
   
 
   render() {
@@ -60,7 +67,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm currPlayer={this.state.currPlayer} lineSubmitCallback={this.submitLine}/>
 
-        <FinalPoem />
+        { this.state.gameOver? <FinalPoem wholePoem={this.state.wholePoem}/>:<FinalPoem gameOverCallback={this.gameOver}/>}
 
       </div>
     );
