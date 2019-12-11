@@ -5,25 +5,64 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      adj1: '',
+      noun1: '',
+      adverb: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
+    }
+  }
+
+  emptyFields = () => {
+    // HELPER FCN
+    this.setState ({
+      adj1: '',
+      noun1: '',
+      adverb: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
+    })
+  }
+
+  onFieldChange = (event) => {
+    // console.log('Player input:', event.target.value, "for", event.target.name);
+    const field = event.target.name;
+    const value = event.target.value;
+    this.setState({ [field]: value });
+  }
+
+  onFormSubmit = (event) => {
+    event.preventDefault();
+
+    const { adj1, noun1, adverb, verb, adj2, noun2 } = this.state;
+    const line = `The ${adj1} ${noun1} ${adverb} ${verb} the ${adj2} ${noun2}.`;
+    this.emptyFields();
+
+    this.props.lineSubmitCallback(line);
   }
 
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.props.currPlayer }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form onSubmit={this.onFormSubmit} className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
-            <input
-              placeholder="hm..."
-              type="text" />
-
+            
+            The 
+            <input value={this.state.adj1} name="adj1" onChange={this.onFieldChange} type="text" placeholder="adjective" className="PlayerSubmissionForm__input--invalid"/>
+            <input value={this.state.noun1} name="noun1" onChange={this.onFieldChange} type="text" placeholder="noun" className="PlayerSubmissionForm__input--invalid"/>
+            <input value={this.state.adverb} name="adverb" onChange={this.onFieldChange} type="text" placeholder="adverb" className="PlayerSubmissionForm__input--invalid"/>
+            <input value={this.state.verb} name="verb" onChange={this.onFieldChange} type="text" placeholder="verb" className="PlayerSubmissionForm__input--invalid"/>
+            the 
+            <input value={this.state.adj2} name="adj2" onChange={this.onFieldChange} type="text" placeholder="adjective" className="PlayerSubmissionForm__input--invalid" />
+            <input value={this.state.noun2} name="noun2" onChange={this.onFieldChange} type="text" placeholder="noun" className="PlayerSubmissionForm__input--invalid" />
+            .
           </div>
 
           <div className="PlayerSubmissionForm__submit">

@@ -12,8 +12,27 @@ class Game extends Component {
     this.state = {
       prevLine: '',
       wholePoem: [],
+      currPlayer: 1,
+      totalPlayerCount: 3,
     }
   }
+
+  rotatePlayer = () => {
+    // HELPER FCN
+    if (this.state.currPlayer === this.state.totalPlayerCount) {
+      this.setState({ currPlayer: 1 });
+    } else {
+      this.setState({ currPlayer: this.state.currPlayer + 1 });
+    }
+  }
+  
+  submitLine = (line) => {
+    // console.log('Game received', line);
+    this.setState({ prevLine: line });
+    this.rotatePlayer();
+  }
+
+  
 
   render() {
 
@@ -37,9 +56,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        { this.state.prevLine? <RecentSubmission />:null }
+        { this.state.prevLine? <RecentSubmission prevLine={this.state.prevLine}/>:null }
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm currPlayer={this.state.currPlayer} lineSubmitCallback={this.submitLine}/>
 
         <FinalPoem />
 
