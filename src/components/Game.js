@@ -38,6 +38,13 @@ class Game extends Component {
     this.setState({ gameOver: true });
   }
   
+  showOrHideRecentSubmission = () => {
+    if (this.state.gameOver) {
+      return null;
+    } else if (this.state.prevLine) {
+      return <RecentSubmission prevLine={this.state.prevLine}/>
+    }
+  }
 
   render() {
 
@@ -61,7 +68,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        { this.state.prevLine? <RecentSubmission prevLine={this.state.prevLine}/>:null }
+        { this.showOrHideRecentSubmission() }
 
         <PlayerSubmissionForm currPlayer={this.state.currPlayer} lineSubmitCallback={this.submitLine}/>
 

@@ -5,7 +5,9 @@ const FinalPoem = ({ wholePoem, gameOverCallback }) => {
 
   const printWholePoem = () => {
     if (wholePoem) {
-      return wholePoem[1];
+      return (wholePoem.map((line, i)=> {
+        return(<p key={i}>{line}</p>);
+      }));
     } else {
       return <p>You ain't got nuthin'</p>
     }
