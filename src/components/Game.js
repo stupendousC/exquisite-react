@@ -45,6 +45,14 @@ class Game extends Component {
       return <RecentSubmission prevLine={this.state.prevLine}/>
     }
   }
+  showOrHidePlayerSubmissionForm = () => {
+    if (this.state.gameOver) {
+      return null;
+    } else {
+      return <PlayerSubmissionForm currPlayer={this.state.currPlayer} lineSubmitCallback={this.submitLine}/>
+    }
+  }
+
 
   render() {
 
@@ -70,7 +78,7 @@ class Game extends Component {
 
         { this.showOrHideRecentSubmission() }
 
-        <PlayerSubmissionForm currPlayer={this.state.currPlayer} lineSubmitCallback={this.submitLine}/>
+        { this.showOrHidePlayerSubmissionForm() }
 
         { this.state.gameOver? <FinalPoem wholePoem={this.state.wholePoem}/>:<FinalPoem wholePoem={null} gameOverCallback={this.gameOver}/>}
 
