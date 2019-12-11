@@ -32,8 +32,6 @@ class Game extends Component {
     currWholePoem.push(line);
     this.setState({ prevLine: line, wholePoem: currWholePoem });
     this.rotatePlayer();
-
-    console.log(this.state.wholePoem);
   }
 
   gameOver = () => {
@@ -67,7 +65,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm currPlayer={this.state.currPlayer} lineSubmitCallback={this.submitLine}/>
 
-        { this.state.gameOver? <FinalPoem wholePoem={this.state.wholePoem}/>:<FinalPoem gameOverCallback={this.gameOver}/>}
+        { this.state.gameOver? <FinalPoem wholePoem={this.state.wholePoem}/>:<FinalPoem wholePoem={null} gameOverCallback={this.gameOver}/>}
 
       </div>
     );

@@ -4,9 +4,11 @@ import './FinalPoem.css';
 const FinalPoem = ({ wholePoem, gameOverCallback }) => {
 
   const printWholePoem = () => {
-    return (
-  <p>{wholePoem}</p>
-    );
+    if (wholePoem) {
+      return wholePoem[1];
+    } else {
+      return <p>You ain't got nuthin'</p>
+    }
   }
 
   return (
