@@ -71,10 +71,10 @@ Again, please limit the time you spend on styling, and reach out often and frequ
 
 1. Make a diagram with all of the components, illustrating which components are nested within each other, and making it clear which components are siblings to each other.
 1. For each component, list out what data needs to be referenced within it, and what data type each piece of data is. Particularly, think about:
-    - If the `PlayerSubmissionForm` component handles a player's submission of poetry, what should that component do with that data?
-    - How should the `FinalPoem` component get all of the parts of the poem?
-    - What kind of input elements should `PlayerSubmissionForm` use? (aka checkbox, text, button, submit, etc...)
-    - What should the `Game` component represent and be responsible for?
+    - If the `PlayerSubmissionForm` component handles a player's submission of poetry, what should that component do with that data?  **It can validate for presence of data before sending back up via callback to Game for saving in state**
+    - How should the `FinalPoem` component get all of the parts of the poem? **Game.js will pass down something like state.lines to FinalPoem.js for rendering**
+    - What kind of input elements should `PlayerSubmissionForm` use? (aka checkbox, text, button, submit, etc...) **7 text boxes for each of the poem words plus a submit button**
+    - What should the `Game` component represent and be responsible for?  **It's the parent for PlayerSubmissionForm.js, RecentSubmission.js, and FinalPoem.js.  PlayerSubmissionForm should use a callback to send poem bits back up to Game so it can save to state.  Game will then send relevant state info down to RecentSubmission & FinalPoem for display.**
 1. For each piece of data in each component, determine if it should be part of that component's `state` or passed in as a `prop`.
 
 The waves are organized in this order:

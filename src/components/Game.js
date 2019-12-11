@@ -8,6 +8,11 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      prevLine: '',
+      wholePoem: [],
+    }
   }
 
   render() {
@@ -32,7 +37,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        { this.state.prevLine? <RecentSubmission />:null }
 
         <PlayerSubmissionForm />
 

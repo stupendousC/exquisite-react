@@ -6,6 +6,7 @@
   grid-template-columns: 2fr 3fr;
   align-items: flex-end;
   margin-bottom: 3rem;
+  color:tomato;
 }
 
 .App__intro-text {
