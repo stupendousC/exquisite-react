@@ -12,7 +12,7 @@ const RecentSubmission = ({prevLine}) => {
 }
 
 RecentSubmission.propTypes = {
-  prevLine: PropTypes.string,
+  prevLine: PropTypes.string.isRequired,
 }
 
 export default RecentSubmission;

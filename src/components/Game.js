@@ -63,9 +63,7 @@ class Game extends Component {
   }
 
   newGameCallback = () => {
-    console.log("TODO for new game callback!");
     this.setState({ gameOver: false, prevLine: "", wholePoem: [], currPlayer: 1 }); 
-
   }
 
   render() {

@@ -1,5 +1,6 @@
 import React from 'react';
 import './FinalPoem.css';
+import PropTypes from 'prop-types';
 
 const FinalPoem = ({ gameOver, wholePoem, gameOverCallback, newGameCallback }) => {
 
@@ -43,6 +44,13 @@ const FinalPoem = ({ gameOver, wholePoem, gameOverCallback, newGameCallback }) =
       </div>
     </div>
   );
+}
+
+FinalPoem.propTypes = {
+  gameOver: PropTypes.bool.isRequired, 
+  wholePoem: PropTypes.array, 
+  gameOverCallback: PropTypes.func, 
+  newGameCallback: PropTypes.func,
 }
 
 export default FinalPoem;
