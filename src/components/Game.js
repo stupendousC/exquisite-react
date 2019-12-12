@@ -19,7 +19,7 @@ class Game extends Component {
   }
 
   rotatePlayer = () => {
-    // HELPER FCN
+    // HELPER FCN... I prematurely optimized for variable player count
     if (this.state.currPlayer === this.state.totalPlayerCount) {
       this.setState({ currPlayer: 1 });
     } else {
