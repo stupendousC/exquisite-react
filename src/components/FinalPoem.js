@@ -1,7 +1,7 @@
 import React from 'react';
 import './FinalPoem.css';
 
-const FinalPoem = ({ wholePoem, gameOverCallback }) => {
+const FinalPoem = ({ gameOver, wholePoem, gameOverCallback, newGameCallback }) => {
 
   const printWholePoem = () => {
     if (wholePoem) {
@@ -9,7 +9,15 @@ const FinalPoem = ({ wholePoem, gameOverCallback }) => {
         return(<p key={i}>{line}</p>);
       }));
     } else {
-      return <p>You ain't got nuthin'</p>
+      return null;
+    }
+  }
+
+  const showCorrectButton = () => {
+    if (gameOver) {
+      return (<input onClick={newGameCallback} type="button" value="Click for New Game!" className="FinalPoem__reveal-btn" />);
+    } else {
+      return (<input onClick={gameOverCallback} type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />);
     }
   }
 
@@ -19,9 +27,9 @@ const FinalPoem = ({ wholePoem, gameOverCallback }) => {
         <h3>Final Poem</h3>
         {printWholePoem()}
       </section>
-
+      
       <div className="FinalPoem__reveal-btn-container">
-        <input onClick={gameOverCallback} type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+        { showCorrectButton() }
       </div>
     </div>
   );
