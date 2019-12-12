@@ -13,6 +13,7 @@ class App extends Component {
           </p>
         </header>
         <Game />
+        <h1>1. turn valid fields blue. 2. optional thing on FIELDS idk</h1>
       </div>
     );
   }

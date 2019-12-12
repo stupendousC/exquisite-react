@@ -50,7 +50,7 @@ class Game extends Component {
     if (this.state.gameOver) {
       return null;
     } else {
-      return <PlayerSubmissionForm currPlayer={this.state.currPlayer} lineSubmitCallback={this.submitLine}/>
+      return <PlayerSubmissionForm fields={FIELDS} currPlayer={this.state.currPlayer} lineSubmitCallback={this.submitLine}/>
     }
   }
 
