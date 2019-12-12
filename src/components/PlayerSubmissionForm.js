@@ -39,7 +39,7 @@ class PlayerSubmissionForm extends Component {
     const entries = Object.entries(this.state);
     const badEntries = entries.filter( field => { return (!field[1]) });
     const badFields = badEntries.map( subarray => { return subarray[0] });
-    return badFields;
+    return ( badFields.length === 0 ? null : badFields );
   }
 
   onFormSubmit = (event) => {
@@ -48,16 +48,15 @@ class PlayerSubmissionForm extends Component {
     const badFields = this.getBadFields();
     
     if (badFields) {
-      console.log("VERDICT:", badFields);
+      console.log("MISSING THESE FIELDS:", badFields);
       return;
+    } 
 
-    } else {
-      const { adj1, noun1, adverb, verb, adj2, noun2 } = this.state;
-      const line = `The ${adj1} ${noun1} ${adverb} ${verb} the ${adj2} ${noun2}.`;
-      this.emptyFields();
+    const { adj1, noun1, adverb, verb, adj2, noun2 } = this.state;
+    const line = `The ${adj1} ${noun1} ${adverb} ${verb} the ${adj2} ${noun2}.`;
+    this.emptyFields();
 
-      this.props.lineSubmitCallback(line);
-    }
+    this.props.lineSubmitCallback(line);  
   }
 
   render() {
