@@ -16,6 +16,10 @@
   background-color: tomato;
 }
 
+.new-game {
+  margin-top: 1rem;
+}
+
 .FinalPoem__poem {
   border-bottom: 2px gray dashed;
 }

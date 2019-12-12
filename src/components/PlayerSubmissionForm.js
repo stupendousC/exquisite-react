@@ -35,9 +35,28 @@ class PlayerSubmissionForm extends Component {
     this.setState({ [field]: value });
   }
 
+  validateFields = () => {
+    const entries = Object.entries(this.state);
+    const badEntries = entries.filter((field) => {
+      console.log(`looking at ${field}`);
+      return (!entries[field]);
+    })
+    const badFields = badEntries.map = (key) => {
+      console.log(key);
+      
+    }
+    console.log( badFields );
+    
+    return true;
+  }
+
   onFormSubmit = (event) => {
     event.preventDefault();
 
+    const verdict = this.validateFields();
+    console.log(verdict);
+    
+    
     const { adj1, noun1, adverb, verb, adj2, noun2 } = this.state;
     const line = `The ${adj1} ${noun1} ${adverb} ${verb} the ${adj2} ${noun2}.`;
     this.emptyFields();

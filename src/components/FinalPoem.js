@@ -29,7 +29,7 @@ const FinalPoem = ({ gameOver, wholePoem, gameOverCallback, newGameCallback }) =
 
   const showCorrectButton = () => {
     if (gameOver) {
-      return (<input onClick={newGameCallback} type="button" value="Click for New Game!" className="FinalPoem__reveal-btn" />);
+      return (<input onClick={newGameCallback} type="button" value="Click for New Game!" className="FinalPoem__reveal-btn new-game" />);
     } else {
       return (<input onClick={gameOverCallback} type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />);
     }
