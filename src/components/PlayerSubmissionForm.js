@@ -7,15 +7,35 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
     
-    console.log(this.props.fields);
+    // iterate through fields and separate out into sentenceKeys/Values/Placeholders arrays
+    const fields = this.props.fields;
+    let sentenceKeys;
+    let sentenceValues = [];
+    let sentencePlaceholders = [];
+
+    sentenceKeys = fields.map(element => {
+      if (typeof(element) === 'string' ) {
+        // element is something like "the" or punctuation
+        sentenceValues.push(element);
+        sentencePlaceholders.push("");
+        return element;
+
+      } else { 
+        // element is a hash like { key: 'verb', placeholder: 'verb' }
+        sentenceValues.push("");
+        sentencePlaceholders.push(element.placeholder);
+        return element.key;
+      }
+    });
+    
+    console.log(`sentenceKeys = ${sentenceKeys}`);
+    console.log(`sentenceValues = ${sentenceValues}`);
+    console.log(`sentencePlaceholders = ${sentencePlaceholders}`);
     
     this.state = {
-      adj1: '',
-      noun1: '',
-      adverb: '',
-      verb: '',
-      adj2: '',
-      noun2: '',
+      sentenceKeys: sentenceKeys,
+      sentenceValues: sentenceValues,
+      sentencePlaceholders: sentencePlaceholders,
     }
   }
 
