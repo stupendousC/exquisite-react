@@ -54,7 +54,7 @@ class Game extends Component {
     }
   }
 
-  showCorrectFinalPoem = () => {
+  showCorrectFinalPoemSection = () => {
     if (this.state.gameOver) {
       return <FinalPoem gameOver={this.state.gameOver} wholePoem={this.state.wholePoem} newGameCallback={this.newGameCallback}/>
     } else {
@@ -90,7 +90,7 @@ class Game extends Component {
 
         { this.showOrHidePlayerSubmissionForm() }
 
-        { this.showCorrectFinalPoem() }
+        { this.showCorrectFinalPoemSection() }
 
       </div>
     );

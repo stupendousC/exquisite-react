@@ -13,6 +13,19 @@ const FinalPoem = ({ gameOver, wholePoem, gameOverCallback, newGameCallback }) =
     }
   }
 
+  const showOrHideWholePoem = () => {
+    if (gameOver) {
+      return (
+        <section className="FinalPoem__poem">
+          <h3>Final Poem</h3>
+          {printWholePoem()}
+        </section>
+      );
+    } else {
+      return null;
+    }
+  }
+
   const showCorrectButton = () => {
     if (gameOver) {
       return (<input onClick={newGameCallback} type="button" value="Click for New Game!" className="FinalPoem__reveal-btn" />);
@@ -23,11 +36,8 @@ const FinalPoem = ({ gameOver, wholePoem, gameOverCallback, newGameCallback }) =
 
   return (
     <div className="FinalPoem">
-      <section className="FinalPoem__poem">
-        <h3>Final Poem</h3>
-        {printWholePoem()}
-      </section>
-      
+        { showOrHideWholePoem() }
+
       <div className="FinalPoem__reveal-btn-container">
         { showCorrectButton() }
       </div>
