@@ -13,7 +13,6 @@ class App extends Component {
           </p>
         </header>
         <Game />
-        <h1>conditionally disable submitLine button?</h1>
       </div>
     );
   }
