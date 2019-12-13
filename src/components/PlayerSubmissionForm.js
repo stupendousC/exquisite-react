@@ -7,42 +7,96 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
     
-    console.log(this.props.fields);
+    // iterate through fields and separate out into sentenceKeys/Values/Placeholders arrays
+    const fields = this.props.fields;
+    let sentenceKeys;
+    let sentenceValues = [];
+    let sentencePlaceholders = [];
+
+    sentenceKeys = fields.map(element => {
+      if (typeof(element) === 'string' ) {
+        // element is something like "the" or punctuation
+        sentenceValues.push(element);
+        sentencePlaceholders.push("");
+        return element;
+
+      } else { 
+        // element is a hash like { key: 'verb', placeholder: 'verb' }
+        sentenceValues.push("");
+        sentencePlaceholders.push(element.placeholder);
+        return element.key;
+      }
+    });
     
     this.state = {
-      adj1: '',
-      noun1: '',
-      adverb: '',
-      verb: '',
-      adj2: '',
-      noun2: '',
+      sentenceKeys: sentenceKeys,
+      sentenceValues: sentenceValues,
+      sentencePlaceholders: sentencePlaceholders,
+
+      origKeys: sentenceKeys,
+      origValues: sentenceValues,
+      origPlaceholders: sentencePlaceholders,
     }
   }
+
+  genInputFields = () => {
+    const validBackground = "PlayerSubmissionForm__input--valid";
+    const invalidBackground = "PlayerSubmissionForm__input--invalid";
+
+    return (this.state.sentenceKeys.map((key, i) => {
+      const currValue = this.state.sentenceValues[i];
+      const currPlaceholder = this.state.sentencePlaceholders[i];
+
+      if (currPlaceholder === "") {
+        // not an active field for user input
+        return currValue;
+      } else if ( currValue.length === 0 ) {
+        return (<input value={currValue} name={key} onChange={this.onFieldChange} type="text" placeholder={currPlaceholder} className={invalidBackground} key={i}/>);
+      } else if ( currValue.length > 0) {
+        return (<input value={currValue} name={key} onChange={this.onFieldChange} type="text" placeholder={currPlaceholder} className={validBackground} key={i}/>);
+      } else {
+        return <h1>Unexpected bug, plz call customer service at 1-800-LOL-OOOPS</h1>
+      }
+  }))}
 
   emptyFields = () => {
     // HELPER FCN
     this.setState ({
-      adj1: '',
-      noun1: '',
-      adverb: '',
-      verb: '',
-      adj2: '',
-      noun2: '',
+      sentenceKeys: this.state.origKeys,
+      sentenceValues: this.state.origValues,
+      sentencePlaceholders: this.state.origPlaceholders,
     })
   }
 
   onFieldChange = (event) => {
-    // console.log('Player input:', event.target.value, "for", event.target.name);
-    const field = event.target.name;
+    const currKey = event.target.name;
     const value = event.target.value;
-    this.setState({ [field]: value });
+    const index = this.state.sentenceKeys.findIndex(key => key===currKey);
+
+    let updatedSentenceValues = [...this.state.sentenceValues];
+    updatedSentenceValues[index] = value;
+    this.setState({ sentenceValues: updatedSentenceValues });
   }
 
   getBadFields = () => {
-    const entries = Object.entries(this.state);
-    const badEntries = entries.filter( field => { return (!field[1]) });
-    const badFields = badEntries.map( subarray => { return subarray[0] });
+    let badFields = [];
+    for (let i = 0; i<this.state.sentenceKeys.length; i++) {
+      if (this.state.sentenceValues[i] === "") {
+        badFields.push(this.state.sentenceKeys[i]);
+      }
+    }
     return ( badFields.length === 0 ? null : badFields );
+  }
+
+  joinSentence = () => {
+    const values = this.state.sentenceValues;
+    const length = values.length;
+    const toJoin = values.slice(0, length-1);
+    const lastWord = values.slice(length-1);
+    let sentence = toJoin.join(" ");
+    sentence += lastWord[0];
+    
+    return sentence;
   }
 
   onFormSubmit = (event) => {
@@ -55,11 +109,11 @@ class PlayerSubmissionForm extends Component {
       return;
     } 
 
-    const { adj1, noun1, adverb, verb, adj2, noun2 } = this.state;
-    const line = `The ${adj1} ${noun1} ${adverb} ${verb} the ${adj2} ${noun2}.`;
+    const sentence = this.joinSentence();
+    
     this.emptyFields();
 
-    this.props.lineSubmitCallback(line);  
+    this.props.lineSubmitCallback(sentence);  
   }
 
   render() {
@@ -71,16 +125,7 @@ class PlayerSubmissionForm extends Component {
         <form onSubmit={this.onFormSubmit} className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-            
-            The 
-            <input value={this.state.adj1} name="adj1" onChange={this.onFieldChange} type="text" placeholder="adjective" className="PlayerSubmissionForm__input--invalid"/>
-            <input value={this.state.noun1} name="noun1" onChange={this.onFieldChange} type="text" placeholder="noun" className="PlayerSubmissionForm__input--invalid"/>
-            <input value={this.state.adverb} name="adverb" onChange={this.onFieldChange} type="text" placeholder="adverb" className="PlayerSubmissionForm__input--invalid"/>
-            <input value={this.state.verb} name="verb" onChange={this.onFieldChange} type="text" placeholder="verb" className="PlayerSubmissionForm__input--invalid"/>
-            the 
-            <input value={this.state.adj2} name="adj2" onChange={this.onFieldChange} type="text" placeholder="adjective" className="PlayerSubmissionForm__input--invalid" />
-            <input value={this.state.noun2} name="noun2" onChange={this.onFieldChange} type="text" placeholder="noun" className="PlayerSubmissionForm__input--invalid" />
-            .
+            { this.genInputFields() }
           </div>
 
           <div className="PlayerSubmissionForm__submit">
