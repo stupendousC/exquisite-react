@@ -140,6 +140,7 @@ class PlayerSubmissionForm extends Component {
 PlayerSubmissionForm.propTypes = {
   currPlayer: PropTypes.number.isRequired,
   lineSubmitCallback: PropTypes.func.isRequired,
+  fields: PropTypes.array,
 }
 
 export default PlayerSubmissionForm;
