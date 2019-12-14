@@ -2,6 +2,9 @@
   "name": "exquisite-react",
   "version": "0.1.0",
   "private": true,
+
+  "homepage": "https://stupendousc.github.io/exquisite-react/",
+
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.6.3",
@@ -28,5 +31,5 @@
   "devDependencies": {
     "gh-pages": "^2.0.1"
   },
-  "homepage": "http://AdaGold.github.io/exquisite-react"
+  
 }
