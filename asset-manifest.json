@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/exquisite-react/static/css/main.efa38e97.chunk.css",
-    "main.js": "/exquisite-react/static/js/main.a31cb66a.chunk.js",
-    "main.js.map": "/exquisite-react/static/js/main.a31cb66a.chunk.js.map",
+    "main.css": "/exquisite-react/static/css/main.844ba492.chunk.css",
+    "main.js": "/exquisite-react/static/js/main.9cd7667f.chunk.js",
+    "main.js.map": "/exquisite-react/static/js/main.9cd7667f.chunk.js.map",
     "runtime~main.js": "/exquisite-react/static/js/runtime~main.2bc6fd97.js",
     "runtime~main.js.map": "/exquisite-react/static/js/runtime~main.2bc6fd97.js.map",
-    "static/js/2.9e43416c.chunk.js": "/exquisite-react/static/js/2.9e43416c.chunk.js",
-    "static/js/2.9e43416c.chunk.js.map": "/exquisite-react/static/js/2.9e43416c.chunk.js.map",
+    "static/js/2.c7d449d7.chunk.js": "/exquisite-react/static/js/2.c7d449d7.chunk.js",
+    "static/js/2.c7d449d7.chunk.js.map": "/exquisite-react/static/js/2.c7d449d7.chunk.js.map",
     "index.html": "/exquisite-react/index.html",
-    "precache-manifest.980aaa0a94eb36e4e50e2a0f40d9f30a.js": "/exquisite-react/precache-manifest.980aaa0a94eb36e4e50e2a0f40d9f30a.js",
+    "precache-manifest.f9ec0f85560cb2cc869ae3346e3bc29b.js": "/exquisite-react/precache-manifest.f9ec0f85560cb2cc869ae3346e3bc29b.js",
     "service-worker.js": "/exquisite-react/service-worker.js",
-    "static/css/main.efa38e97.chunk.css.map": "/exquisite-react/static/css/main.efa38e97.chunk.css.map"
+    "static/css/main.844ba492.chunk.css.map": "/exquisite-react/static/css/main.844ba492.chunk.css.map"
   }
 }
